@@ -37,7 +37,7 @@ select d.name as director, sum(r.count_e) as employe from directors d
                     GROUP BY id ) as r
     on df.film_id = r.f_id
     GROUP by name
-    order by employe desc
+    order by employe desc;
 
 --most popular genres
 select title, count(*) as count

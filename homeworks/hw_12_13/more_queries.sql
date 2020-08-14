@@ -1,7 +1,8 @@
+-- it's bullshit. It doesn't work yet
 select d.name as director, g.title as favorit_genre, m.count as count
     FROM directors d
     inner JOIN (
-        select r.g_id as g_id, r.d_id as d_id, max(r.count) as count
+        select r.g_id as g_id, r.d_id as d_id
             from (
                 select gf.genre_id as g_id, count(*) as count, df.director_id as d_id
                     from genres_film gf

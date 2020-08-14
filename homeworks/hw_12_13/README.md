@@ -1,6 +1,8 @@
-##Database queries from the last lesson
+## Database queries from the last lesson
+
 link to the [database dump](https://github.com/cyr1z/learn_python/blob/master/homeworks/hw_11/films.sql)
-###Directors Favorites
+
+#### Directors Favorites
 selects the most hired actors of the director
 ```sql
 select a.name as actor, d.name as director, count(*) as count
@@ -13,7 +15,7 @@ select a.name as actor, d.name as director, count(*) as count
     order by count(*) DESC;
 ```
 
-###Most productive actors 
+#### Most productive actors 
 ```sql
 select a.name actor,  count(*) as roles from actors a
     inner join actors_film af on a.id = af.actor_id
@@ -22,7 +24,7 @@ select a.name actor,  count(*) as roles from actors a
     order by count(*) DESC; 
 ```
 
-###Most productive directors
+#### Most productive directors
 ```sql
 select d.name as director,  count(*) as films from directors d
     inner join directors_film df on d.id = df.director_id
@@ -31,7 +33,7 @@ select d.name as director,  count(*) as films from directors d
     order by count(*) DESC;
 ```
 
-###Biggest cast
+#### Biggest cast
 ```sql
 SELECT title, count(*) FROM films 
 	inner join actors_film af on films.id = af.film_id
@@ -39,7 +41,7 @@ SELECT title, count(*) FROM films
 	ORDER by count(*) desc;
 ```
 
-###Best employer
+#### Best employer
 ```sql
 select d.name as director, sum(r.count_e) as employe from directors d
     inner join directors_film df on d.id = df.director_id
@@ -52,7 +54,7 @@ select d.name as director, sum(r.count_e) as employe from directors d
     order by employe desc;
 ```
 
-###Most popular genres
+#### Most popular genres
 ```sql
 select title, count(*) as count
     from genres g

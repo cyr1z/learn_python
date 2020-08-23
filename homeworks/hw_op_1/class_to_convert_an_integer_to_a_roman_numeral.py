@@ -50,6 +50,8 @@ class IntegerToRoman:
 if __name__ == '__main__':
     a = IntegerToRoman(10)
     b = IntegerToRoman(312)
+    c = 2014
 
     print(f'{a.integer} is roman {a}')
     print(f'{b.integer} is roman {b}')
+    print(f'{c} is roman {IntegerToRoman(c).get_roman()}')

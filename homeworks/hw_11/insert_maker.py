@@ -47,10 +47,3 @@ if __name__ == '__main__':
                     genres_film.append((genres.index(g) + 1, idx))
                     print(f"insert into genres (title) values ('{g}');")
                 print(f"insert into genres_film (genre_id, film_id) values ('{genres.index(g) + 1}', '{idx}');")
-
-
-
-
-
-
-

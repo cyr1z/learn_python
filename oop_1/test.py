@@ -2,7 +2,8 @@ class Element:
     melting_point = -283
     boiling_point = -182
 
-    def transform(self, t, scale):
+    @staticmethod
+    def transform(t, scale):
         if scale == 'F':
             return (t - 32) * 5/9
         if scale == 'K':

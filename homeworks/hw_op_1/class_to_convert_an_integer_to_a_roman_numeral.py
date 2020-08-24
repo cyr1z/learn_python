@@ -13,13 +13,12 @@ class RomanNumber:
                 self.integer = int(num)
             except ValueError:
                 print('wrong integer')
-                exit()
         else:
             try:
+                num = str(num).upper()
                 self.integer = self.roman_to_int(num)
             except ValueError:
                 print('wrong string')
-                exit()
 
     @staticmethod
     def __get_roman_notation__(x):
@@ -50,9 +49,6 @@ class RomanNumber:
         pair_registers = tuple(zip(x_register_list[::-1], self.roman_registers))
         return ''.join(tuple(map(self.__get_roman_notation__, pair_registers))[::-1])
 
-    def get_int(self):
-        return self.integer
-
     def roman_to_int(self, num):
         """
         Convert roman to int
@@ -66,6 +62,9 @@ class RomanNumber:
             else:
                 result -= self.roman_numerals[val]
         return result
+
+    def get_int(self):
+        return self.integer
 
     def __str__(self):
         return self.get_roman()
@@ -81,9 +80,10 @@ if __name__ == '__main__':
     d = 3999
     xl = RomanNumber('XL')
 
-    print(f'{a.integer} is roman {a}')  # 10 is roman X
-    print(f'{b.integer} is roman {b}')  # 312 is roman CCCXII
-    print(f'{c} is roman {RomanNumber(c).get_roman()}')  # 2014 is roman MMXIV
-    print(f'{d} is roman {RomanNumber(d)}')  # 3999 is roman MMMCMXCIX
-    print(f'{4000} is roman {RomanNumber(4000)}')  # 4000 is roman bigger number
-    print(f'{xl} is arabic {xl.integer}')  # XL is arabic 40
+    print(f'{a.get_int()} is roman {a}')  # 10 is roman X
+    print(f'{b.get_int()} is roman {b}')  # 312 is roman CCCXII
+    print(f'{c} is {RomanNumber(c).get_roman()}')  # 2014 is MMXIV
+    print(f'{d} is {RomanNumber(d)}')  # 3999 is MMMCMXCIX
+    print(f'{4000} is {RomanNumber(4000)}')  # 4000 is bigger number
+    print(f'{xl} is {xl.get_int()}')  # XL is 40
+    print(f'CLIX is {RomanNumber("CLIX").get_int()}')  # CLIX is 159

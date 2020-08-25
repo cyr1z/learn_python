@@ -1,3 +1,6 @@
+# 8. Write a Python class to reverse a string word by word.
+
+
 class ReverseWords:
     def __init__(self, string):
         self.string = string

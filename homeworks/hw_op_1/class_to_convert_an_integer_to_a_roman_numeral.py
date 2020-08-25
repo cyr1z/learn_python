@@ -1,7 +1,10 @@
+# 1. Write a Python class to convert an integer to a roman numeral.
+# 2. Write a Python class to convert a roman numeral to an integer. 
+
 class RomanNumber:
     """
     Convert integer to roman number and roman to integer
-    self.integer : decimal number
+    self.get_int() : return decimal number
     self.get_roman() : return roman number string
     """
     roman_registers = (('I', 'V', 'X'), ('X', 'L', 'C'), ('C', 'D', 'M'), ('M',))

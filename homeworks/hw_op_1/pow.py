@@ -1,3 +1,6 @@
+# 7. Write a Python class to implement pow(x, n).
+
+
 class Pow:
     def __init__(self, num, my_pow):
         self.num = num

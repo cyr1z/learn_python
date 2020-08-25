@@ -1,4 +1,4 @@
-# Write a Python program to find the three elements that sum to zero from a set (array) of n real numbers.
+# 6. Write a Python program to find the three elements that sum to zero from a set (array) of n real numbers.
 
 
 class Triples:

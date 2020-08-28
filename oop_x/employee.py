@@ -9,9 +9,6 @@ class Employee:
         self.phone = phone
         self.money_per_day = money_per_day
 
-    def class_name(self):
-        return self.__class__.__name__
-
     @staticmethod
     def weekdays():
         now = datetime.now()
@@ -61,22 +58,22 @@ class Programmer(Employee):
         return super().work() + ' and start coding'
 
     def __gt__(self, other):
-        if not self.class_name() == other.class_name():
+        if not isinstance(other, Programmer):
             return super().__gt__(other)
         return len(self.tech_stack) > len(other.tech_stack)
 
     def __lt__(self, other):
-        if not self.class_name() == other.class_name():
+        if not isinstance(other, Programmer):
             return super().__lt__(other)
         return len(self.tech_stack) < len(other.tech_stack)
 
     def __ge__(self, other):
-        if not self.class_name() == other.class_name():
+        if not isinstance(other, Programmer):
             return super().__ge__(other)
         return len(self.tech_stack) >= len(other.tech_stack)
 
     def __le__(self, other):
-        if not self.class_name() == other.class_name():
+        if not isinstance(other, Programmer):
             return super().__le__(other)
         return len(self.tech_stack) <= len(other.tech_stack)
 

@@ -45,6 +45,9 @@ class Recruiter(Employee):
     def __str__(self):
         return f'Recruiter: {self.name} {self.surname}'
 
+    def __repr__(self):
+        return self.__str__() + f'. Hired this month: {", ".join(self.hired_this_month)}'
+
 
 class Programmer(Employee):
 
@@ -77,9 +80,6 @@ class Programmer(Employee):
             return super().__le__(other)
         return len(self.tech_stack) <= len(other.tech_stack)
 
-    def __str__(self):
-        return f'Programmer: {self.name} {self.surname} ({", ".join(self.tech_stack)})'
-
     def __add__(self, other):
         result = Programmer(set(self.tech_stack + other.tech_stack),
                             f'{self.name} and {other.name},',
@@ -87,6 +87,16 @@ class Programmer(Employee):
                             '', '', self.money_per_day + other.money_per_day)
         result.closed_this_month = set(self.closed_this_month + other.closed_this_month)
         return result
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __str__(self):
+        return f'Programmer: {self.name} {self.surname} ({", ".join(self.tech_stack)})'
+
+    def __repr__(self):
+        return self.__str__() + f'  day salary: {self.money_per_day}, \n ' \
+                                f'clothed this month: {", ".join(self.closed_this_month)}'
 
 
 vasilyev = Programmer(['js', 'python', 'make good coffee'], 'Vasya', 'Vasilyev', 'ad@hell.oj', '+322223322', 32)
@@ -102,3 +112,5 @@ print(vasilyev.tech_stack)
 print(gunko)
 print(vasilyev < gunko)
 print(vasilyev + gunko)
+vasilyev
+gunko

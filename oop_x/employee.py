@@ -112,5 +112,3 @@ print(vasilyev.tech_stack)
 print(gunko)
 print(vasilyev < gunko)
 print(vasilyev + gunko)
-vasilyev
-gunko

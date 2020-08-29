@@ -36,7 +36,6 @@ class Employee:
 
 
 class Recruiter(Employee):
-
     hired_this_month = []
 
     def work(self):
@@ -50,7 +49,6 @@ class Recruiter(Employee):
 
 
 class Programmer(Employee):
-
     closed_this_month = []
 
     def __init__(self, tech_stack, *args):
@@ -99,16 +97,30 @@ class Programmer(Employee):
                                 f'clothed this month: {", ".join(self.closed_this_month)}'
 
 
-vasilyev = Programmer(['js', 'python', 'make good coffee'], 'Vasya', 'Vasilyev', 'ad@hell.oj', '+322223322', 32)
-gunko = Programmer(['js', 'python', 'kubernetes', 'docker'], 'petr', 'gunko', 'ur@hell.oj', '+322227772', 30)
-tatarinova = Recruiter('Lena', 'Tatarinova', 'hop@hell.oj', '+372223322', 32)
+class Candidate:
+    def __init__(self, full_name, email, technologies, main_skill, main_skill_grade):
+        self.full_name = full_name
+        self.email = email
+        self.technologies = technologies
+        self.main_skill_grade = main_skill_grade
+        self.main_skill = main_skill
 
-print(vasilyev, gunko, tatarinova, sep='\n')
-print(f'{vasilyev.name} salary: {vasilyev.check_salary()}')
-print(vasilyev.surname, 'said:', vasilyev.work())
-print(vasilyev > tatarinova)
-print(vasilyev >= tatarinova)
-print(vasilyev.tech_stack)
-print(gunko)
-print(vasilyev < gunko)
-print(vasilyev + gunko)
+    def __str__(self):
+        return f'Candidate: {self.full_name} {", ".join(self.technologies)}, ' \
+               f'{self.main_skill}: {self.main_skill_grade}'
+
+    def __repr__(self):
+        return self.__str__()
+
+
+class Vacancy:
+    def __init__(self, title, main_skill, main_skill_level):
+        self.title = title
+        self.main_skill = main_skill
+        self.main_skill_level = main_skill_level
+
+    def __str__(self):
+        return f'Vacancy: {self.title} {self.main_skill}: {self.main_skill_level}'
+
+    def __repr__(self):
+        return self.__str__()

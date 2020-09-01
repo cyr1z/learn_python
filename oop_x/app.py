@@ -1,6 +1,20 @@
+import datetime
+import os
+
+from main import main
 from models import Programmer, Recruiter, Vacancy, Candidate
 
 if __name__ == '__main__':
+    try:
+        main()
+    except Exception as e:
+        with open("logs.py", "a") as f:
+            x = datetime.datetime.now()
+            f.write(f'{x.strftime("%x: %X")} {str(e.__class__.__name__)} {str(e)} \n')
+
+    if os.path.exists('emails.txt'):
+        os.remove('emails.txt')
+
     vasilyev = Programmer(['js', 'python', 'make good coffee'],
                           'Vasya', 'Vasilyev',
                           'ad@hell.oj', '+322223322', 32,

@@ -1,11 +1,34 @@
 from datetime import datetime
 
 
+class UnableToWorkException(Exception):
+    pass
+
+
 class Employee:
+    def validate_user_email_exist(self):
+        with open('emails.txt', 'r') as f:
+            emails_from_file = (x.strip() for x in f.readlines())
+            if self.mail in emails_from_file:
+                raise ValueError
+
+    def write_emails_to_file(self):
+        if self.mail:
+            with open("emails.txt", "a") as f:
+                f.write(self.mail + '\n')
+
     def __init__(self, name, surname, mail, phone, money_per_day):
         self.name = name.capitalize()
         self.surname = surname.capitalize()
         self.mail = mail
+        try:
+            self.validate_user_email_exist()
+        except ValueError:
+            print('this email is busy')
+            raise
+        except FileNotFoundError:
+            pass
+        self.write_emails_to_file()
         self.phone = phone
         self.money_per_day = money_per_day
 
@@ -104,6 +127,9 @@ class Candidate:
         self.technologies = technologies
         self.main_skill_grade = main_skill_grade
         self.main_skill = main_skill
+
+    def work(self):
+        raise UnableToWorkException('I`m not hired yet, lol')
 
     def __str__(self):
         return f'Candidate: {self.full_name} {", ".join(self.technologies)}, ' \

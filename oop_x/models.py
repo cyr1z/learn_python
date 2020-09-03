@@ -1,4 +1,7 @@
 from datetime import datetime
+from logger import Log
+from settings import LOGFILE
+log = Log(LOGFILE)
 
 
 class UnableToWorkException(Exception):
@@ -18,8 +21,26 @@ class Employee:
                 f.write(self.mail + '\n')
 
     def __init__(self, name, surname, mail, phone, money_per_day):
-        self.name = name.capitalize()
-        self.surname = surname.capitalize()
+        try:
+            name = name.capitalize()
+        except AttributeError:
+            name = str(name).capitalize()
+        except NameError as e:
+            log.add_string(f' create employe error with name {name}')
+            log.add_exception(e)
+            raise
+        self.name = name
+
+        try:
+            surname = name.capitalize()
+        except AttributeError:
+            surname = str(name).capitalize()
+        except NameError as e:
+            log.add_string(f' create employe error with name {surname}')
+            log.add_exception(e)
+            raise
+        self.surname = surname
+
         self.mail = mail
         try:
             self.validate_user_email_exist()
@@ -129,7 +150,8 @@ class Candidate:
         self.main_skill = main_skill
 
     def work(self):
-        raise UnableToWorkException('I`m not hired yet, lol')
+        raise UnableToWorkException(f'Candidate {self.full_name} ({self.main_skill}): I`m not '
+                                    f'hired yet, lol.')
 
     def __str__(self):
         return f'Candidate: {self.full_name} {", ".join(self.technologies)}, ' \

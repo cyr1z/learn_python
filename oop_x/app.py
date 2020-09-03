@@ -1,16 +1,16 @@
-import datetime
 import os
+from settings import LOGFILE
+from logger import Log
 
 from main import main
 from models import Programmer, Recruiter, Vacancy, Candidate
 
 if __name__ == '__main__':
+    log = Log(LOGFILE)
     try:
         main()
     except Exception as e:
-        with open("logs.py", "a") as f:
-            x = datetime.datetime.now()
-            f.write(f'{x.strftime("%x: %X")} {str(e.__class__.__name__)} {str(e)} \n')
+        log.add_exception(e)
 
     if os.path.exists('emails.txt'):
         os.remove('emails.txt')
@@ -19,6 +19,7 @@ if __name__ == '__main__':
                           'Vasya', 'Vasilyev',
                           'ad@hell.oj', '+322223322', 32,
                           )
+    
     gunko = Programmer(['js', 'python', 'kubernetes', 'docker'], 'petr', 'gunko', 'ur@hell.oj', '+322227772', 30)
 
     tatarinova = Recruiter('Lena', 'Tatarinova', 'hop@hell.oj', '+372223322', 32)
@@ -43,3 +44,4 @@ if __name__ == '__main__':
     print(peterson)
     print(vorghol)
     print(gagarin)
+    print(log)

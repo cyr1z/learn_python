@@ -30,3 +30,16 @@ class Log:
     def clear(self):
         print('log clear')
         os.remove(self.logfile)
+
+    def tail(self, line_count=1):
+        try:
+            with open(self.logfile, "r") as f:
+                if not f.readable():
+                    raise IOError(f'log file: {self.logfile} is not readable')
+                try:
+                    return ''.join(f.readlines()[-line_count:])
+                except IOError as e:
+                    return None
+        except FileNotFoundError:
+            return None
+

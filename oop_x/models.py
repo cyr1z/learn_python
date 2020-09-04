@@ -1,6 +1,7 @@
 from datetime import datetime
 from logger import Log
 from settings import LOGFILE
+
 log = Log(LOGFILE)
 
 

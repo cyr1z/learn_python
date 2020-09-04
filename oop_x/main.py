@@ -1,6 +1,8 @@
 from models import Candidate, Programmer, Recruiter, Vacancy
-def main():
+# from logger import LogError
 
+
+def main():
     vasilyev = Programmer(['js', 'python', 'make good coffee'],
                           'Vasya', 'Vasilyev',
                           'ad@hell.oj', '+322223322', 32,
@@ -9,11 +11,9 @@ def main():
     gunko = Programmer(['js', 'python', 'kubernetes', 'docker'], 'petr', 'gunko', 'ur@hell.oj', '+322227772', 30)
 
     tatarinova = Recruiter('Lena', 'Tatarinova', 'hop@hell.oj', '+372223322', 32)
-
     gagarin = Candidate('Yuriy Gagarin', 'yuriy@gagarin.su', ['spaceman', 'pilot'], 'pilot', 100)
     peterson = Candidate('Jim Peterson', 'jim_peterson.gmail.com', ['python', 'js'], 'python', 79)
     vorghol = Candidate('Anastasia Vorghol', 'vorghol_a1952.gmail.com', ['python', 'js'], 'js', 68)
-
     js_junior = Vacancy('JS Junior', 'js', 45)
     python_middle = Vacancy('Python Middle', 'python', 60)
 
@@ -30,9 +30,12 @@ def main():
     print(peterson)
     print(vorghol)
     print(gagarin)
+    print(python_middle)
 
     # a = 1/0
     # raise ValueError
     # raise FileNotFoundError('bananiv nema')
-    vova = Candidate('vova bulochkin', 'vova.gmail.com', ['python', 'js'], 'python', 79)
-    vova.work()
+    # ed = FileNotFoundError('azazaz')
+    # raise LogError(ed)
+    # vova = Candidate('vova bulochkin', 'vova.gmail.com', ['python', 'js'], 'python', 79)
+    # vova.work()

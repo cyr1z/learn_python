@@ -31,6 +31,9 @@ def main():
     print(vorghol)
     print(gagarin)
     print(python_middle)
+    print(vasilyev.about_person)
+    data = Candidate.make_candidates_from_csv()
+    [print(i) for i in data]
 
     # a = 1/0
     # raise ValueError

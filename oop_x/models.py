@@ -1,6 +1,7 @@
 from datetime import datetime
+import csv
 from logger import Log
-from settings import LOGFILE
+from settings import LOGFILE, CSVFILE
 
 log = Log(LOGFILE)
 
@@ -10,6 +11,7 @@ class UnableToWorkException(Exception):
 
 
 class Employee:
+
     def validate_user_email_exist(self):
         with open('emails.txt', 'r') as f:
             emails_from_file = (x.strip() for x in f.readlines())
@@ -53,6 +55,10 @@ class Employee:
         self.write_emails_to_file()
         self.phone = phone
         self.money_per_day = money_per_day
+
+    @property
+    def about_person(self):
+        return f'{self.__class__.__name__}, {self.name} {self.surname}, {self.weekdays()} '
 
     @staticmethod
     def weekdays():
@@ -149,6 +155,13 @@ class Candidate:
         self.technologies = technologies
         self.main_skill_grade = main_skill_grade
         self.main_skill = main_skill
+
+    @classmethod
+    def make_candidates_from_csv(cls, filename=CSVFILE):
+        with open(filename) as f_obj:
+            lines = csv.DictReader(f_obj)
+            return [Candidate(l['Full Name'], l['Email'], l['Technologies'].split('|'), l['Main Skill'],
+                              l['Main Skill Grade']) for l in lines]
 
     def work(self):
         raise UnableToWorkException(f'Candidate {self.full_name} ({self.main_skill}): I`m not '
